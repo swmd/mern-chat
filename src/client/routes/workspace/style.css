@@ -1,0 +1,13 @@
+.container {
+	padding: 50px;
+}
+
+.react-tabs__tab-list {
+	margin: 0;
+}
+
+.react-tabs__tab-panel {
+	border: 1px solid #aaa;
+	border-top: none;
+	padding: 30px;
+}
