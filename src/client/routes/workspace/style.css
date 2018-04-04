@@ -6,7 +6,7 @@
 	margin: 0;
 }
 
-.react-tabs__tab-panel {
+.tab-content {
 	border: 1px solid #aaa;
 	border-top: none;
 	padding: 30px;
