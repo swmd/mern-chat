@@ -13,7 +13,7 @@ class Register extends Component {
       email: '',
       username: '',
       password: '',
-      passwordConfirm: ''
+      passwordConfirm: '',
     },
   }
 
@@ -49,13 +49,12 @@ class Register extends Component {
   }
 
   onEmailBlur = () => {
-
     // form validation
-    let emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-    const isEmailValid = emailPattern.test(this.state.email);
-    let emailError = '';
+    let emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
+    const isEmailValid = emailPattern.test(this.state.email)
+    let emailError = ''
     if (isEmailValid === false) {
-      emailError = 'Email is not valid';
+      emailError = 'Email is not valid'
     } else {
       fetch(`/api/email/${this.state.email}`, {
         method: 'GET',
@@ -64,55 +63,55 @@ class Register extends Component {
           'Content-Type': 'application/json',
         },
       })
-      .then(response => response.json())
-      .then(responseJson => {
-        if (response.alreadyInUse) {
-          emailError = 'Email is already in use. Please choose another';
-          this.setState({
-            errors: {
-              ...this.state.errors,
-              email: emailError
-            }
-          })
-        }
-      })
-      .catch(() => {})
+        .then(response => response.json())
+        .then(responseJson => {
+          if (response.alreadyInUse) {
+            emailError = 'Email is already in use. Please choose another'
+            this.setState({
+              errors: {
+                ...this.state.errors,
+                email: emailError,
+              },
+            })
+          }
+        })
+        .catch(() => {})
     }
     this.setState({
       errors: {
         ...this.state.errors,
-        email: emailError
-      }
-    });    
+        email: emailError,
+      },
+    })
   }
 
   onFieldChange = (fieldName, event) => {
-    let value = event.target.value;
-    let errors = {...this.state.errors};
+    let value = event.target.value
+    let errors = { ...this.state.errors }
     if (value == '') {
-      errors[fieldName] = `${fieldName} can 't be blank`;
+      errors[fieldName] = `${fieldName} can 't be blank`
     } else {
-      errors[fieldName] = '';
+      errors[fieldName] = ''
     }
     this.setState({
       [fieldName]: value,
-      errors
-    });
+      errors,
+    })
   }
 
-  onPasswordConfirmChange = (e) => {
-    const confirmPassword = e.target.value;
-    let confirmError = '';
+  onPasswordConfirmChange = e => {
+    const confirmPassword = e.target.value
+    let confirmError = ''
     if (this.state.password !== confirmPassword) {
-      confirmError = 'Password does not match';
+      confirmError = 'Password does not match'
     }
     this.setState({
       passwordConfirm: confirmPassword,
       errors: {
         ...this.state.errors,
-        passwordConfirm: confirmError
-      }
-    });
+        passwordConfirm: confirmError,
+      },
+    })
   }
 
   render () {
@@ -160,7 +159,8 @@ class Register extends Component {
               value={this.state.passwordConfirm}
               onChange={e => this.onPasswordConfirmChange(e)}
               errorText={
-                this.state.errors.passwordConfirm !== '' && this.state.errors.passwordConfirm
+                this.state.errors.passwordConfirm !== '' &&
+                this.state.errors.passwordConfirm
               }
             />
             <RaisedButton
