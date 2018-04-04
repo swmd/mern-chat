@@ -3,6 +3,12 @@ import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
 import { Link, withRouter } from 'react-router-dom'
 
+const styles = {
+  button: {
+    marginTop: 20,
+  },
+}
+
 class Register extends Component {
   state = {
     email: '',
@@ -126,6 +132,7 @@ class Register extends Component {
               autoFocus
               type='email'
               hintText='Email'
+              floatingLabelText='Email'
               value={this.state.email}
               onChange={e => this.onFieldChange('email', e)}
               onBlur={this.onEmailBlur}
@@ -136,6 +143,7 @@ class Register extends Component {
             <TextField
               fullWidth
               hintText='Username'
+              floatingLabelText='Username'
               value={this.state.username}
               onChange={e => this.onFieldChange('username', e)}
               errorText={
@@ -146,6 +154,7 @@ class Register extends Component {
               type='password'
               fullWidth
               hintText='Password'
+              floatingLabelText='Password'
               value={this.state.password}
               onChange={e => this.onFieldChange('password', e)}
               errorText={
@@ -156,6 +165,7 @@ class Register extends Component {
               type='password'
               fullWidth
               hintText='Confirm Password'
+              floatingLabelText='Confirm Password'
               value={this.state.passwordConfirm}
               onChange={e => this.onPasswordConfirmChange(e)}
               errorText={
@@ -169,6 +179,7 @@ class Register extends Component {
               fullWidth
               label='Create an account'
               primary
+              style={styles.button}
             />
           </form>
           <p>

@@ -4,6 +4,12 @@ import TextField from 'material-ui/TextField'
 import Snackbar from 'material-ui/Snackbar'
 import { withRouter, Link } from 'react-router-dom'
 
+const styles = {
+  button: {
+    marginTop: 20,
+  },
+}
+
 class Login extends Component {
   state = {
     email: '',
@@ -88,6 +94,7 @@ class Login extends Component {
                 fullWidth
                 autoFocus
                 hintText='Email'
+                floatingLabelText='Email'
                 value={email}
                 onChange={e => this.setState({ email: e.target.value })}
               />
@@ -95,6 +102,7 @@ class Login extends Component {
                 type='password'
                 fullWidth
                 hintText='Password'
+                floatingLabelText='Password'
                 value={password}
                 onChange={e => this.setState({ password: e.target.value })}
                 errorText={
@@ -108,6 +116,7 @@ class Login extends Component {
                 fullWidth
                 label='Login'
                 primary
+                style={styles.button}
               />
             </form>
             <p>

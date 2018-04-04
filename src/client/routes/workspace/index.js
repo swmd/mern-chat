@@ -6,6 +6,7 @@ import TextField from 'material-ui/TextField'
 import Snackbar from 'material-ui/Snackbar'
 import { Tabs, Tab } from 'material-ui/Tabs'
 import WorkspaceList from './components/WSList'
+import CreateWorkspace from './components/CreateWorkspace'
 
 const styles = {
   container: {
@@ -23,6 +24,9 @@ const styles = {
     borderStyle: 'solid',
     borderTopWidth: 0,
     padding: 30,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 }
 
@@ -51,11 +55,7 @@ class WorkspacePage extends Component {
           </Tab>
           <Tab label='Create Workspace' value='create'>
             <div style={styles.tabContent}>
-              <p>
-                This is another example of a controllable tab. Remember, if you
-                use controllable Tabs, you need to give all of your tabs values
-                or else you wont be able to select them.
-              </p>
+              <CreateWorkspace />
             </div>
           </Tab>
         </Tabs>
