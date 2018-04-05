@@ -44,6 +44,10 @@ class WorkspacePage extends Component {
     })
   }
 
+  createWorkspace = values => {
+    // console.log('submit: ', values);
+  }
+
   render () {
     return (
       <div style={styles.container}>
@@ -55,7 +59,7 @@ class WorkspacePage extends Component {
           </Tab>
           <Tab label='Create Workspace' value='create'>
             <div style={styles.tabContent}>
-              <CreateWorkspace />
+              <CreateWorkspace onSubmit={this.createWorkspace} />
             </div>
           </Tab>
         </Tabs>
