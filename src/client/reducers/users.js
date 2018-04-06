@@ -1,4 +1,4 @@
-import { WORKSPACE_CREATE_SUCCESS } from '../workspaces'
+import { WORKSPACE_CREATE_SUCCESS } from './workspaces'
 
 const initialState = {
   currentUser: null,
