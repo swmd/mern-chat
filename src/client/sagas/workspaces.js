@@ -7,6 +7,8 @@ import {
   WORKSPACE_FETCH,
   WORKSPACE_FETCH_SUCCESS,
 } from '../reducers/workspaces'
+import API from '../services/api'
+import { ENDPOINT } from '../services/constants'
 
 export function * fetchWorkspaces () {
   try {
@@ -18,6 +20,12 @@ export function * fetchWorkspaces () {
 
 export function * createWorkspace (action) {
   try {
+    const newWorkspace = yield call(
+      API.post,
+      ENDPOINT.CREATE_WORKSPACE,
+      action.values
+    )
+    console.log('New: ', newWorkspace)
     yield put({ type: WORKSPACE_CREATE_SUCCESS })
   } catch (e) {
     console.log(e)
