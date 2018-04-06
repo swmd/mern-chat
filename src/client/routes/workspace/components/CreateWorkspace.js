@@ -63,7 +63,6 @@ let CreateWorkspace = ({ handleSubmit, pristine, submitting }) => (
     />
     <br />
     <Field
-      autoFocus
       fullWidth
       type='email'
       hintText='Email'

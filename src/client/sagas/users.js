@@ -17,6 +17,6 @@ export function * getUsers () {
  * @desc action watchers for nations saga
  * @return {void}
  */
-export default function * watchNationUpdate () {
+export default function * watchUsers () {
   yield all([yield takeEvery('GET_USERS', getUsers)])
 }

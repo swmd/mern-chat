@@ -5,8 +5,11 @@ import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
 import Snackbar from 'material-ui/Snackbar'
 import { Tabs, Tab } from 'material-ui/Tabs'
+
 import WorkspaceList from './components/WSList'
 import CreateWorkspace from './components/CreateWorkspace'
+
+import { createWorkspace, fetchWorkspaces } from '../../actions/workspaces'
 
 const styles = {
   container: {
@@ -44,10 +47,6 @@ class WorkspacePage extends Component {
     })
   }
 
-  createWorkspace = values => {
-    // console.log('submit: ', values);
-  }
-
   render () {
     return (
       <div style={styles.container}>
@@ -59,7 +58,7 @@ class WorkspacePage extends Component {
           </Tab>
           <Tab label='Create Workspace' value='create'>
             <div style={styles.tabContent}>
-              <CreateWorkspace onSubmit={this.createWorkspace} />
+              <CreateWorkspace onSubmit={this.props.createWorkspace} />
             </div>
           </Tab>
         </Tabs>
@@ -72,6 +71,15 @@ function mapStateToProps (state) {
   return state
 }
 
-const connectedWorkspacePage = connect(mapStateToProps)(WorkspacePage)
+function mapDispatchToProps (dispatch) {
+  return {
+    fetchWorkspaces: () => dispatch(fetchWorkspaces),
+    createWorkspace: values => dispatch(createWorkspace(values)),
+  }
+}
+
+const connectedWorkspacePage = connect(mapStateToProps, mapDispatchToProps)(
+  WorkspacePage
+)
 
 export default connectedWorkspacePage
