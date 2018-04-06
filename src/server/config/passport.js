@@ -15,9 +15,11 @@ module.exports = (config, passport) => {
         passReqToCallback: true,
       },
       (req, email, password, done) => {
-        console.log('email: ', email);
         User.findOne(
-          { 'local.email': email },
+          {
+            'local.email': email,
+            'local.workspace': req.body.workspace,
+          },
           (err, user) => {
             if (err) {
               return done(err)
@@ -27,8 +29,9 @@ module.exports = (config, passport) => {
             }
             const newUser = new User()
 
-            newUser.local.email = email;
-            newUser.local.username = req.body.username;
+            newUser.local.email = email
+            newUser.local.username = req.body.username
+            newUser.local.workspace = req.body.workspace
             newUser.local.password = newUser.generateHash(password)
             newUser.local.channels = [config.defaultChannel.toLowerCase()]
             newUser.save((err, user) => {
@@ -53,7 +56,10 @@ module.exports = (config, passport) => {
       },
       (req, email, password, done) => {
         User.findOne(
-          { 'local.email': email },
+          {
+            'local.email': email,
+            'local.workspace': req.body.workspace,
+          },
           (err, user) => {
             if (err) {
               return done(err)

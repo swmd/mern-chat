@@ -5,7 +5,6 @@ const UserSchema = mongoose.Schema({
   local: {
     email: {
       type: mongoose.Schema.Types.String,
-      unique: true,
       required: true,
     },
     username: {
@@ -15,6 +14,9 @@ const UserSchema = mongoose.Schema({
     password: {
       type: mongoose.Schema.Types.String,
       required: true,
+    },
+    workspace: {
+      type: mongoose.Schema.Types.String,
     },
     channels: [
       {
@@ -27,8 +29,8 @@ const UserSchema = mongoose.Schema({
     },
     createdAt: {
       type: Date,
-      default: Date.now
-    }
+      default: Date.now,
+    },
   },
 })
 

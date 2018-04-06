@@ -12,7 +12,9 @@ import { ENDPOINT } from '../services/constants'
 
 export function * fetchWorkspaces () {
   try {
-    yield put({ type: WORKSPACE_FETCH_SUCCESS })
+    const workspaces = yield call(API.get, ENDPOINT.GET_WORKSPACE)
+    console.log('workspaces: ', workspaces)
+    yield put({ type: WORKSPACE_FETCH_SUCCESS, workspaces })
   } catch (e) {
     console.log(e)
   }
@@ -26,9 +28,14 @@ export function * createWorkspace (action) {
       action.values
     )
     console.log('New: ', newWorkspace)
-    yield put({ type: WORKSPACE_CREATE_SUCCESS })
+    yield put({
+      type: WORKSPACE_CREATE_SUCCESS,
+      workspace: newWorkspace.workspace._doc,
+      user: newWorkspace.user._doc,
+    })
+    yield put({ type: WORKSPACE_FETCH })
   } catch (e) {
-    console.log(e)
+    console.log('create error: ', e)
   }
 }
 

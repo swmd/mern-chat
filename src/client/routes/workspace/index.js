@@ -41,6 +41,10 @@ class WorkspacePage extends Component {
     }
   }
 
+  componentDidMount () {
+    this.props.fetchWorkspaces()
+  }
+
   handleChange = value => {
     this.setState({
       value: value,
@@ -53,7 +57,7 @@ class WorkspacePage extends Component {
         <Tabs value={this.state.value} onChange={this.handleChange}>
           <Tab label='Workspace List' value='list' style={styles.tab}>
             <div style={styles.tabContent}>
-              <WorkspaceList workspaces={[]} />
+              <WorkspaceList workspaces={this.props.workspaces} />
             </div>
           </Tab>
           <Tab label='Create Workspace' value='create'>
@@ -68,12 +72,14 @@ class WorkspacePage extends Component {
 }
 
 function mapStateToProps (state) {
-  return state
+  return {
+    workspaces: state.workspaces.workspaces,
+  }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-    fetchWorkspaces: () => dispatch(fetchWorkspaces),
+    fetchWorkspaces: () => dispatch(fetchWorkspaces()),
     createWorkspace: values => dispatch(createWorkspace(values)),
   }
 }

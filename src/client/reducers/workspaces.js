@@ -11,10 +11,17 @@ const initialState = {
 
 export default function workspaces (state = initialState, action) {
   switch (action.type) {
-    case WORKSPACE_CREATE:
     case WORKSPACE_CREATE_SUCCESS:
+      return {
+        ...state,
+        currentWorkspace: action.workspace,
+      }
+    case WORKSPACE_FETCH_SUCCESS:
+      return {
+        ...state,
+        workspaces: action.workspaces,
+      }
     case WORKSPACE_CREATE_FAIL:
-      return state
     default:
       return state
   }

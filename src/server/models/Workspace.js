@@ -12,6 +12,7 @@ const workspaceSchema = mongoose.Schema({
   },
   displayName: {
     type: mongoose.Schema.Types.String,
+    unique: true,
     required: true,
   },
   email: {
