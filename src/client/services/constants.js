@@ -5,4 +5,5 @@ export const ENDPOINT = {
   LOGIN: BASE_URL + '/authenticate',
   CREATE_WORKSPACE: BASE_URL + '/workspace',
   GET_WORKSPACE: BASE_URL + '/workspaces',
+  SEND_EMAIL: BASE_URL + '/sendemail',
 }

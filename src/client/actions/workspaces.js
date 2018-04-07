@@ -4,6 +4,7 @@ import {
   WORKSPACE_CREATE_FAIL,
   WORKSPACE_FETCH,
   WORKSPACE_FETCH_SUCCESS,
+  SEND_EMAIL,
 } from '../reducers/workspaces'
 
 export function createWorkspace (values) {
@@ -16,5 +17,12 @@ export function createWorkspace (values) {
 export function fetchWorkspaces () {
   return {
     type: WORKSPACE_FETCH,
+  }
+}
+
+export function sendEmail (email) {
+  return {
+    type: SEND_EMAIL,
+    email,
   }
 }

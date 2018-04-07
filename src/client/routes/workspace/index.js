@@ -9,7 +9,11 @@ import { Tabs, Tab } from 'material-ui/Tabs'
 import WorkspaceList from './components/WSList'
 import CreateWorkspace from './components/CreateWorkspace'
 
-import { createWorkspace, fetchWorkspaces } from '../../actions/workspaces'
+import {
+  createWorkspace,
+  fetchWorkspaces,
+  sendEmail,
+} from '../../actions/workspaces'
 
 const styles = {
   container: {
@@ -30,6 +34,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    flexDirection: 'column',
   },
 }
 
@@ -51,13 +56,20 @@ class WorkspacePage extends Component {
     })
   }
 
+  sendEmail = email => {
+    console.log('submit: ', email)
+  }
+
   render () {
     return (
       <div style={styles.container}>
         <Tabs value={this.state.value} onChange={this.handleChange}>
           <Tab label='Workspace List' value='list' style={styles.tab}>
             <div style={styles.tabContent}>
-              <WorkspaceList workspaces={this.props.workspaces} />
+              <WorkspaceList
+                workspaces={this.props.workspaces}
+                sendEmail={this.props.sendEmail}
+              />
             </div>
           </Tab>
           <Tab label='Create Workspace' value='create'>
@@ -81,6 +93,7 @@ function mapDispatchToProps (dispatch) {
   return {
     fetchWorkspaces: () => dispatch(fetchWorkspaces()),
     createWorkspace: values => dispatch(createWorkspace(values)),
+    sendEmail: email => dispatch(sendEmail(email)),
   }
 }
 
